@@ -1,0 +1,92 @@
+[22:52:41.568] [INFO ] [master] server/main.c:77  reader process 59016 started
+[22:52:41.568] [INFO ] [master] server/main.c:401  benchd 1.0.0 listening on :9200 — device /dev/ttyUSB2 @ 115200 8N1, history 1.0M, max 32 clients, idle-release 0s
+[22:52:41.588] [INFO ] [reader] server/reader.c:228  opened /dev/ttyUSB2
+[22:52:42.562] [INFO ] [child:59024] server/session.c:285  client ::1:55768 (recorder) joined; 1 viewer(s); replaying history
+[22:52:43.562] [INFO ] [child:59028] server/session.c:285  client ::1:55776 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:52:43.562] [INFO ] [child:59028] server/session.c:367  control granted to cyantus@cyan-cachy (::1:55776)
+[22:52:43.562] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:52:45.062] [INFO ] [child:59028] server/session.c:74  client ::1:55776 (cyantus@cyan-cachy) left: bye
+[22:52:57.853] [INFO ] [child:59057] server/session.c:285  client ::1:47814 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:52:57.853] [INFO ] [child:59057] server/session.c:367  control granted to cyantus@cyan-cachy (::1:47814)
+[22:52:57.853] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:52:59.853] [INFO ] [child:59057] server/session.c:74  client ::1:47814 (cyantus@cyan-cachy) left: bye
+[22:53:34.873] [WARN ] [reader] server/reader.c:102  device /dev/ttyUSB2 lost (EOF); retrying every 500 ms
+[22:53:37.395] [INFO ] [reader] server/reader.c:113  device /dev/ttyUSB2 is back
+[22:53:38.859] [INFO ] [child:59144] server/session.c:285  client ::1:52394 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:53:38.860] [INFO ] [child:59144] server/session.c:74  client ::1:52394 (cyantus@cyan-cachy) left: bye
+[22:53:38.861] [INFO ] [child:59147] server/session.c:285  client ::1:52400 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:53:38.861] [INFO ] [child:59147] server/session.c:74  client ::1:52400 (cyantus@cyan-cachy) left: bye
+[22:53:42.174] [INFO ] [child:59155] server/session.c:285  client ::1:52402 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:53:42.174] [INFO ] [child:59155] server/session.c:74  client ::1:52402 (cyantus@cyan-cachy) left: bye
+[22:53:55.185] [INFO ] [child:59170] server/session.c:285  client ::1:34402 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:53:55.186] [INFO ] [child:59170] server/session.c:74  client ::1:34402 (cyantus@cyan-cachy) left: bye
+[22:54:14.520] [INFO ] [child:59222] server/session.c:285  client ::1:44510 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:54:14.520] [INFO ] [child:59222] server/session.c:367  control granted to cyantus@cyan-cachy (::1:44510)
+[22:54:14.520] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:54:16.021] [INFO ] [child:59222] server/session.c:74  client ::1:44510 (cyantus@cyan-cachy) left: bye
+[22:54:16.022] [INFO ] [child:59226] server/session.c:285  client ::1:44516 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:54:16.022] [INFO ] [child:59226] server/session.c:367  control granted to cyantus@cyan-cachy (::1:44516)
+[22:54:16.022] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:54:21.023] [INFO ] [child:59226] server/session.c:74  client ::1:44516 (cyantus@cyan-cachy) left: bye
+[22:54:29.623] [INFO ] [child:59245] server/session.c:285  client ::1:49880 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:54:29.623] [INFO ] [child:59245] server/session.c:367  control granted to cyantus@cyan-cachy (::1:49880)
+[22:54:29.664] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:54:34.665] [INFO ] [child:59245] server/session.c:74  client ::1:49880 (cyantus@cyan-cachy) left: bye
+[22:54:52.664] [INFO ] [child:59278] server/session.c:285  client ::1:34410 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:54:52.664] [INFO ] [child:59278] server/session.c:367  control granted to cyantus@cyan-cachy (::1:34410)
+[22:54:52.664] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:54:56.665] [INFO ] [child:59278] server/session.c:74  client ::1:34410 (cyantus@cyan-cachy) left: bye
+[22:57:36.180] [INFO ] [child:59551] server/session.c:285  client ::1:40730 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:57:36.180] [INFO ] [child:59551] server/session.c:367  control granted to cyantus@cyan-cachy (::1:40730)
+[22:57:36.221] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:57:38.223] [INFO ] [child:59551] server/session.c:74  client ::1:40730 (cyantus@cyan-cachy) left: bye
+[22:57:43.664] [INFO ] [child:59560] server/session.c:285  client ::1:33760 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:57:43.664] [INFO ] [child:59560] server/session.c:367  control granted to cyantus@cyan-cachy (::1:33760)
+[22:57:43.664] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:57:44.665] [INFO ] [child:59560] server/session.c:74  client ::1:33760 (cyantus@cyan-cachy) left: bye
+[22:58:27.800] [INFO ] [child:59694] server/session.c:285  client ::1:33208 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:58:27.800] [INFO ] [child:59694] server/session.c:367  control granted to cyantus@cyan-cachy (::1:33208)
+[22:58:27.800] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:58:29.300] [INFO ] [child:59694] server/session.c:74  client ::1:33208 (cyantus@cyan-cachy) left: bye
+[22:58:29.302] [INFO ] [child:59696] server/session.c:285  client ::1:35860 (cyantus@cyan-cachy) joined; 2 viewer(s); replaying history
+[22:58:29.302] [INFO ] [child:59696] server/session.c:367  control granted to cyantus@cyan-cachy (::1:35860)
+[22:58:29.302] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:58:35.303] [INFO ] [child:59696] server/session.c:74  client ::1:35860 (cyantus@cyan-cachy) left: bye
+[22:59:12.223] [INFO ] [child:59760] server/session.c:285  client ::1:38432 (ts-recorder) joined; 2 viewer(s); replaying history
+[22:59:13.224] [INFO ] [child:59763] server/session.c:285  client ::1:38446 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[22:59:13.224] [INFO ] [child:59763] server/session.c:367  control granted to cyantus@cyan-cachy (::1:38446)
+[22:59:13.266] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:59:14.767] [INFO ] [child:59763] server/session.c:74  client ::1:38446 (cyantus@cyan-cachy) left: bye
+[22:59:21.472] [INFO ] [child:59776] server/session.c:285  client ::1:40552 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[22:59:21.472] [INFO ] [child:59776] server/session.c:367  control granted to cyantus@cyan-cachy (::1:40552)
+[22:59:21.472] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:59:21.972] [INFO ] [child:59776] server/session.c:74  client ::1:40552 (cyantus@cyan-cachy) left: bye
+[22:59:54.021] [INFO ] [child:60011] server/session.c:285  client ::1:60396 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[22:59:54.021] [INFO ] [child:60011] server/session.c:367  control granted to cyantus@cyan-cachy (::1:60396)
+[22:59:54.063] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[22:59:55.564] [INFO ] [child:60011] server/session.c:74  client ::1:60396 (cyantus@cyan-cachy) left: bye
+[22:59:55.566] [INFO ] [child:60015] server/session.c:285  client ::1:60402 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[22:59:55.566] [INFO ] [child:60015] server/session.c:367  control granted to cyantus@cyan-cachy (::1:60402)
+[22:59:55.566] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[23:00:01.567] [INFO ] [child:60015] server/session.c:74  client ::1:60402 (cyantus@cyan-cachy) left: bye
+[23:01:35.298] [INFO ] [child:60445] server/session.c:285  client ::1:58592 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[23:01:35.303] [INFO ] [child:60445] server/session.c:74  client ::1:58592 (cyantus@cyan-cachy) left: bye
+[23:01:35.470] [INFO ] [child:60452] server/session.c:285  client ::1:58596 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[23:01:35.510] [INFO ] [child:60452] server/session.c:74  client ::1:58596 (cyantus@cyan-cachy) left: bye
+[23:01:35.665] [INFO ] [child:60464] server/session.c:285  client ::1:58604 (report) joined; 3 viewer(s); replaying history
+[23:01:38.674] [INFO ] [child:60464] server/session.c:367  control granted to report (::1:58604)
+[23:01:41.969] [INFO ] [reader] server/control.c:97  control released by report (released)
+[23:01:42.470] [INFO ] [child:60464] server/session.c:74  client ::1:58604 (report) left: bye
+[23:02:04.056] [INFO ] [child:60616] server/session.c:285  client ::1:40104 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[23:02:04.061] [INFO ] [child:60616] server/session.c:74  client ::1:40104 (cyantus@cyan-cachy) left: bye
+[23:02:04.224] [INFO ] [child:60626] server/session.c:285  client ::1:40114 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[23:02:04.224] [INFO ] [child:60626] server/session.c:74  client ::1:40114 (cyantus@cyan-cachy) left: bye
+[23:02:38.331] [INFO ] [child:60735] server/session.c:285  client ::1:38580 (cyantus@cyan-cachy) joined; 3 viewer(s); replaying history
+[23:02:38.331] [INFO ] [child:60735] server/session.c:367  control granted to cyantus@cyan-cachy (::1:38580)
+[23:02:38.331] [INFO ] [reader] server/control.c:97  control released by cyantus@cyan-cachy (released)
+[23:02:40.832] [INFO ] [child:60735] server/session.c:74  client ::1:38580 (cyantus@cyan-cachy) left: bye
+[23:02:40.872] [INFO ] [child:59760] server/session.c:74  client ::1:38432 (ts-recorder) left: connection closed
+[23:02:40.872] [INFO ] [child:59024] server/session.c:74  client ::1:55768 (recorder) left: connection closed
+[23:02:57.250] [INFO ] [master] server/main.c:214  signal 15: shutting down
+[23:02:57.256] [INFO ] [reader] server/reader.c:290  reader exiting (tty settings restored)
+[23:02:57.260] [INFO ] [master] server/main.c:266  bye

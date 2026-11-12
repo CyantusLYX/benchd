@@ -1,0 +1,3 @@
+#placeholder 佔位檔 — 待作者替換：請放入從 Onkyo TX-NR676E UART (115200 8N1) 實際擷取的 U-Boot SPL 輸出。
+#placeholder 只要檔案中仍有 "#placeholder" 開頭的行，benchsim 就會改用內建的通用 U-Boot 風格文字並印出 WARN。
+#placeholder 可以在擷取內容中插入 "#delay <ms>" 行來重現開機過程的停頓。
