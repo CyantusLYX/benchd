@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 968" role="img" aria-label="benchd 架構：用戶端經 TCP 連到 benchd 內各自的 child 行程；所有 benchd 行程只透過一塊共享記憶體、一把 robust mutex 和一條 pipe 溝通；只有 reader 持有序列埠。">
+
+<style>
+  svg { font-family: "Inter", "Noto Sans TC", "WenQuanYi Zen Hei", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif; color: #1f2937; }
+  .host { fill: none; stroke: #6b7280; stroke-width: 2; stroke-dasharray: 8 6; }
+  .host-solid { fill: none; stroke: #374151; stroke-width: 2.5; }
+  .tab-bg { fill: #ffffff; }
+  .tab-t { fill: #111827; }
+  .proc { fill: #ffffff; stroke: #374151; stroke-width: 1.8; }
+  .lib { fill: #f3f4f6; stroke: #6b7280; stroke-width: 1.4; stroke-dasharray: 3 3; }
+  .dev { fill: #f9fafb; stroke: #6b7280; stroke-width: 1.6; }
+  .group { fill: none; stroke: #9ca3af; stroke-width: 1.4; stroke-dasharray: 2 4; }
+  .shm { fill: #fdf6e3; stroke: #b45309; stroke-width: 1.6; }
+  .hatch { stroke: #b4530922; stroke-width: 1; }
+  .comp { fill: #ffffff; stroke: #b45309; stroke-width: 1.2; }
+  .band { fill: #eef2f7; stroke: none; }
+  .badge { fill: #e5e7eb; } .badge-t { fill: #111827; }
+  .t { fill: #111827; } .d { fill: #4b5563; }
+  .data { stroke: #0f766e; stroke-width: 2; } .lbl.data { fill: #0f766e; stroke: none; }
+  .ctrl { stroke: #c2410c; stroke-width: 2; } .lbl.ctrl { fill: #c2410c; stroke: none; }
+  .pipe { stroke: #c2410c; stroke-width: 5; stroke-linejoin: round; }
+  .mgmt { stroke: #6b7280; stroke-width: 1.6; stroke-dasharray: 5 4; } .lbl.mgmt { fill: #6b7280; stroke: none; }
+  .flow { stroke: currentColor; stroke-width: 1.6; }
+</style>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+  <marker id="arr-rev" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M10,0 L0,5 L10,10 z" fill="context-stroke"/></marker>
+  <marker id="arr-pipe" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="16" markerHeight="16" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker>
+  <pattern id="shmhatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" class="hatch"/></pattern>
+</defs>
+<rect x="40" y="44" width="1040" height="166" rx="10" class="host"/>
+<rect x="54" y="34" width="456.00000000000034" height="20" rx="4" class="tab-bg"/>
+<text x="62" y="48" font-size="12" text-anchor="start" class="tab-t" font-weight="600">用戶端 · 任意主機，每個 bench 一個行程（單一 poll() 迴圈，無 thread）</text>
+<rect x="80" y="86" width="250" height="96" rx="6" class="lib"/>
+<text x="92" y="106" font-size="13" text-anchor="start" class="t" font-weight="600">libbench.so.1</text>
+<text x="92" y="124" font-size="11" text-anchor="start" class="d">bench、benchd、工具都動態連結它</text>
+<text x="92" y="139" font-size="11" text-anchor="start" class="d">proto · net · log · crc32 · util</text>
+<text x="92" y="154" font-size="11" text-anchor="start" class="d">RUNPATH $ORIGIN/../lib</text>
+<rect x="400" y="86" width="160" height="96" rx="6" class="proc"/>
+<text x="412" y="106" font-size="13" text-anchor="start" class="t" font-weight="600">bench · alice</text>
+<rect x="508" y="94" width="42" height="16" rx="8" class="badge"/>
+<text x="529.0" y="106" font-size="10" text-anchor="middle" class="badge-t" font-weight="600">CTRL</text>
+<text x="412" y="124" font-size="11" text-anchor="start" class="d">bench --name alice，互動 TUI</text>
+<text x="412" y="139" font-size="11" text-anchor="start" class="d">持有控制權：可輸入</text>
+<text x="412" y="154" font-size="11" text-anchor="start" class="d">Ctrl-] t / r / i / s / h</text>
+<rect x="620" y="86" width="160" height="96" rx="6" class="proc"/>
+<text x="632" y="106" font-size="13" text-anchor="start" class="t" font-weight="600">bench · bob</text>
+<rect x="728" y="94" width="42" height="16" rx="8" class="badge"/>
+<text x="749.0" y="106" font-size="10" text-anchor="middle" class="badge-t" font-weight="600">VIEW</text>
+<text x="632" y="124" font-size="11" text-anchor="start" class="d">bench --name bob，互動 TUI</text>
+<text x="632" y="139" font-size="11" text-anchor="start" class="d">read-only viewer</text>
+<text x="632" y="154" font-size="11" text-anchor="start" class="d">看到的內容與 alice 相同</text>
+<rect x="840" y="86" width="160" height="96" rx="6" class="proc"/>
+<text x="852" y="106" font-size="13" text-anchor="start" class="t" font-weight="600">bench 子指令</text>
+<rect x="948" y="94" width="42" height="16" rx="8" class="badge"/>
+<text x="969.0" y="106" font-size="10" text-anchor="middle" class="badge-t" font-weight="600">VIEW</text>
+<text x="852" y="124" font-size="11" text-anchor="start" class="d">watch / info / send / tail</text>
+<text x="852" y="139" font-size="11" text-anchor="start" class="d">make stress：20 個 watch</text>
+<text x="852" y="154" font-size="11" text-anchor="start" class="d">bench-evil：故障注入</text>
+<rect x="40" y="220" width="1040" height="44" rx="6" class="band"/>
+<text x="56" y="238" font-size="12" text-anchor="start" class="t" font-weight="600">TCP :9000 — 唯一跨主機的邊界</text>
+<text x="56" y="255" font-size="10.5" text-anchor="start" class="d">benchd 協定：12-byte header（magic·ver·type·len·crc32）+ payload，big-endian</text>
+<path d="M470,182 V330" class="ctrl" fill="none" marker-end="url(#arr)"/>
+<text x="464" y="236" font-size="11" text-anchor="end" class="lbl ctrl">HELLO · TAKE · INPUT · BAUD</text>
+<path d="M490,330 V182" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="496" y="256" font-size="11" text-anchor="start" class="lbl data">DATA · EVENT · STATUS</text>
+<path d="M690,182 V330" class="mgmt" fill="none" marker-end="url(#arr)"/>
+<text x="684" y="236" font-size="11" text-anchor="end" class="lbl mgmt">HELLO · PING</text>
+<path d="M710,330 V182" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="716" y="256" font-size="11" text-anchor="start" class="lbl data">DATA · EVENT · STATUS</text>
+<path d="M910,182 V330" class="mgmt" fill="none" marker-end="url(#arr)"/>
+<text x="904" y="236" font-size="11" text-anchor="end" class="lbl mgmt">HELLO · INFO_REQ</text>
+<path d="M930,330 V182" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="936" y="256" font-size="11" text-anchor="start" class="lbl data">INFO · DATA</text>
+<rect x="40" y="276" width="1040" height="572" rx="10" class="host-solid"/>
+<rect x="54" y="266" width="504.6000000000001" height="20" rx="4" class="tab-bg"/>
+<text x="62" y="280" font-size="12" text-anchor="start" class="tab-t" font-weight="600">伺服端 benchd · 一台主機、N+2 個行程、零 thread；行程之間只靠下面三樣東西溝通</text>
+<rect x="80" y="318" width="220" height="108" rx="6" class="proc"/>
+<text x="92" y="338" font-size="13" text-anchor="start" class="t" font-weight="600">master</text>
+<text x="92" y="356" font-size="11" text-anchor="start" class="d">listen / accept()（EINTR 重試）</text>
+<text x="92" y="371" font-size="11" text-anchor="start" class="d">每條連線 fork() 一個 child</text>
+<text x="92" y="386" font-size="11" text-anchor="start" class="d">SIGCHLD → waitpid(WNOHANG) 回收</text>
+<text x="92" y="401" font-size="11" text-anchor="start" class="d">SIGUSR1 切換 log level；關機協調</text>
+<rect x="380" y="306" width="640" height="134" rx="8" class="group"/>
+<text x="392" y="320" font-size="10.5" text-anchor="start" class="d">children · 每條連線一個獨立行程（benchd-child，≤ --max-clients=32），彼此不通訊</text>
+<rect x="400" y="330" width="160" height="96" rx="6" class="proc"/>
+<text x="412" y="350" font-size="13" text-anchor="start" class="t" font-weight="600">child · alice</text>
+<rect x="508" y="338" width="42" height="16" rx="8" class="badge"/>
+<text x="529.0" y="350" font-size="10" text-anchor="middle" class="badge-t" font-weight="600">CTRL</text>
+<text x="412" y="368" font-size="11" text-anchor="start" class="d">握手 → 歷史回放 → live</text>
+<text x="412" y="383" font-size="11" text-anchor="start" class="d">poll(socket, 20 ms)</text>
+<text x="412" y="398" font-size="11" text-anchor="start" class="d">ring[off, head) → socket</text>
+<rect x="620" y="330" width="160" height="96" rx="6" class="proc"/>
+<text x="632" y="350" font-size="13" text-anchor="start" class="t" font-weight="600">child · bob</text>
+<rect x="728" y="338" width="42" height="16" rx="8" class="badge"/>
+<text x="749.0" y="350" font-size="10" text-anchor="middle" class="badge-t" font-weight="600">VIEW</text>
+<text x="632" y="368" font-size="11" text-anchor="start" class="d">同左，各自的 offset</text>
+<text x="632" y="383" font-size="11" text-anchor="start" class="d">INPUT → NOT_CONTROLLER</text>
+<text x="632" y="398" font-size="11" text-anchor="start" class="d">卡住只卡自己</text>
+<rect x="840" y="330" width="160" height="96" rx="6" class="proc"/>
+<text x="852" y="350" font-size="13" text-anchor="start" class="t" font-weight="600">child · …</text>
+<rect x="948" y="338" width="42" height="16" rx="8" class="badge"/>
+<text x="969.0" y="350" font-size="10" text-anchor="middle" class="badge-t" font-weight="600">VIEW</text>
+<text x="852" y="368" font-size="11" text-anchor="start" class="d">每個 client 一個</text>
+<text x="852" y="383" font-size="11" text-anchor="start" class="d">5 s 無 HELLO / 60 s idle 踢掉</text>
+<text x="852" y="398" font-size="11" text-anchor="start" class="d">PDEATHSIG：跟 master 一起死</text>
+<path d="M300,372 H380" class="mgmt" fill="none" marker-end="url(#arr)"/>
+<text x="340" y="364" font-size="11" text-anchor="middle" class="lbl mgmt">fork()</text>
+<text x="340" y="388" font-size="10" text-anchor="middle" class="lbl mgmt">master close(fd)</text>
+<rect x="80" y="486" width="920" height="134" rx="8" class="shm"/>
+<rect x="80" y="486" width="920" height="134" rx="8" fill="url(#shmhatch)" stroke="none"/>
+<text x="96" y="506" font-size="12" text-anchor="start" class="t" font-weight="600">共享記憶體 struct bench_shm · 一塊 mmap(MAP_SHARED | MAP_ANONYMOUS)，在第一個 fork() 之前建立 → 每個行程看到的是同一塊</text>
+<rect x="96" y="520" width="213" height="86" rx="6" class="comp"/>
+<text x="108" y="540" font-size="12" text-anchor="start" class="t" font-weight="600">robust mutex</text>
+<text x="108" y="558" font-size="10.5" text-anchor="start" class="d">PROCESS_SHARED | ROBUST</text>
+<text x="108" y="573" font-size="10.5" text-anchor="start" class="d">持鎖者死亡 → EOWNERDEAD</text>
+<text x="108" y="588" font-size="10.5" text-anchor="start" class="d">ring_repair → consistent</text>
+<rect x="321" y="520" width="213" height="86" rx="6" class="comp"/>
+<text x="333" y="540" font-size="12" text-anchor="start" class="t" font-weight="600">state</text>
+<text x="333" y="558" font-size="10.5" text-anchor="start" class="d">dev_state · baud · rx/tx</text>
+<text x="333" y="573" font-size="10.5" text-anchor="start" class="d">ctrl_pid · ctrl_name（控制權）</text>
+<text x="333" y="588" font-size="10.5" text-anchor="start" class="d">log_level（SIGUSR1 改這裡）</text>
+<rect x="546" y="520" width="213" height="86" rx="6" class="comp"/>
+<text x="558" y="540" font-size="12" text-anchor="start" class="t" font-weight="600">slots[1024]</text>
+<text x="558" y="558" font-size="10.5" text-anchor="start" class="d">pid · name · peer</text>
+<text x="558" y="573" font-size="10.5" text-anchor="start" class="d">offset：此 child 串流到哪</text>
+<text x="558" y="588" font-size="10.5" text-anchor="start" class="d">master 用它數人數、等關機</text>
+<rect x="771" y="520" width="213" height="86" rx="6" class="comp"/>
+<text x="783" y="540" font-size="12" text-anchor="start" class="t" font-weight="600">ring buffer 64 KiB</text>
+<text x="783" y="558" font-size="10.5" text-anchor="start" class="d">DATA / EVENT 記錄 + 16 B 標頭</text>
+<text x="783" y="573" font-size="10.5" text-anchor="start" class="d">head / tail 邏輯 offset 只增</text>
+<text x="783" y="588" font-size="10.5" text-anchor="start" class="d">慢 client：offset &lt; tail → DROPPED</text>
+<path d="M190,426 V486" class="mgmt" fill="none" marker-end="url(#arr)"/>
+<text x="198" y="452" font-size="10.5" text-anchor="start" class="lbl mgmt">占用 / 釋放 slot</text>
+<text x="198" y="466" font-size="10.5" text-anchor="start" class="lbl mgmt">SIGCHLD：釋放死 child 的控制權</text>
+<path d="M440,426 V486" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="448" y="452" font-size="10.5" text-anchor="start" class="lbl data">讀 ring @ 自己的 offset</text>
+<text x="448" y="466" font-size="10.5" text-anchor="start" class="lbl ctrl">TAKE：ctrl_pid = me</text>
+<path d="M660,426 V486" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="668" y="452" font-size="10.5" text-anchor="start" class="lbl data">讀 ring @ 自己的 offset</text>
+<path d="M880,426 V486" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="888" y="452" font-size="10.5" text-anchor="start" class="lbl data">讀 ring @ 自己的 offset</text>
+<path d="M1020,400 H1048 V740 H300" class="pipe" fill="none" marker-end="url(#arr-pipe)"/>
+<text x="1062" y="570" font-size="11" text-anchor="middle" class="lbl ctrl" transform="rotate(-90 1062 570)">input pipe（children → reader）</text>
+<text x="1000" y="730" font-size="10.5" text-anchor="end" class="lbl ctrl">每筆 {pid, type, data} ≤ PIPE_BUF → write() 原子，多個 child 同時寫也不交錯</text>
+<text x="1000" y="760" font-size="10.5" text-anchor="end" class="lbl ctrl">INPUT · BAUD（reader 再查一次 pid == ctrl_pid）· RELEASE（任何 child，斷線時也走這）</text>
+<rect x="80" y="668" width="220" height="108" rx="6" class="proc"/>
+<text x="92" y="688" font-size="13" text-anchor="start" class="t" font-weight="600">reader</text>
+<text x="92" y="706" font-size="11" text-anchor="start" class="d">benchd-reader · 唯一持有 serial fd</text>
+<text x="92" y="721" font-size="11" text-anchor="start" class="d">poll(tty, pipe)，100 ms tick</text>
+<text x="92" y="736" font-size="11" text-anchor="start" class="d">tty → ring；pipe → tty</text>
+<text x="92" y="751" font-size="11" text-anchor="start" class="d">EIO → DEV_LOST，每 500 ms 重開</text>
+<path d="M170,668 V620" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="178" y="640" font-size="10.5" text-anchor="start" class="lbl data">append DATA / EVENT（持鎖）</text>
+<text x="178" y="654" font-size="10.5" text-anchor="start" class="lbl mgmt">寫 dev_state、baud</text>
+<rect x="40" y="866" width="1040" height="90" rx="10" class="host"/>
+<rect x="54" y="856" width="251.09999999999997" height="20" rx="4" class="tab-bg"/>
+<text x="62" y="870" font-size="12" text-anchor="start" class="tab-t" font-weight="600">核心 tty 驅動 / 硬體 · 使用者空間之外</text>
+<rect x="80" y="886" width="210" height="58" rx="6" class="dev"/>
+<text x="92" y="906" font-size="13" text-anchor="start" class="t" font-weight="600">serial device</text>
+<text x="92" y="924" font-size="11" text-anchor="start" class="d">/dev/ttyUSB0 · 115200 8N1 · O_NOCTTY</text>
+<text x="92" y="939" font-size="11" text-anchor="start" class="d">或 benchsim 的 pty /tmp/benchsim0</text>
+<path d="M170,886 V776" class="data" fill="none" marker-end="url(#arr)"/>
+<text x="162" y="836" font-size="10.5" text-anchor="end" class="lbl data">read() ≤ 1024 B</text>
+<path d="M210,776 V886" class="ctrl" fill="none" marker-end="url(#arr)"/>
+<text x="218" y="836" font-size="10.5" text-anchor="start" class="lbl ctrl">write() 控制者的輸入</text>
+<rect x="370" y="886" width="300" height="58" rx="6" class="dev"/>
+<text x="382" y="906" font-size="13" text-anchor="start" class="t" font-weight="600">benchsim（獨立行程，不屬於 benchd）</text>
+<text x="382" y="924" font-size="11" text-anchor="start" class="d">開一個 pty，用 baud 速度重播 PYNQ boot log</text>
+<text x="382" y="939" font-size="11" text-anchor="start" class="d">沒有板子時 benchd 看到的就是它的 slave 端</text>
+<path d="M370,915 H290" class="mgmt" fill="none" marker-end="url(#arr)"/>
+<text x="330" y="906" font-size="10" text-anchor="middle" class="lbl mgmt">pty 另一端</text>
+</svg>

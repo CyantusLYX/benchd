@@ -103,4 +103,5 @@ sim/       pynq_boot.log    (real PYNQ/EBAZ4205 boot, U-Boot -> login, recorded 
 captures/pynq/             raw recordings from the real board (see docs/DECISIONS.md)
 scripts/   lib.sh test.sh stress.sh capture.sh demo_r1..r12.sh
 docs/      DECISIONS.md     (implementation choices)
+           FUNCTIONS.md     (per-file, per-function design and purpose, in Traditional Chinese)
 ```
